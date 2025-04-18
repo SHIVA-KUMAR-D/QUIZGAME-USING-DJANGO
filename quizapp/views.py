@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from decouple import config
 import google.generativeai as genai
 import re
+from decouple import config
+
 
 # Configure Gemini API using .env
 genai.configure(api_key=config("GEMINI_API_KEY"))

@@ -1,15 +1,20 @@
 from pathlib import Path
+import os
+
+# Get the SECRET_KEY from environment variable
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set!")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-qedbmf9#a9ya#$7v^l!_0#v_v)z498ro-q@t_2hkhr++qm88*q'
-
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Add your production domain names here
 
 INSTALLED_APPS = [
-    'quizapp.apps.QuizappConfig',      
+    'quizapp.apps.QuizappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,8 +38,8 @@ ROOT_URLCONF = 'quizsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /'templates'],    
-        'APP_DIRS': True,                   
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -48,7 +53,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quizsite.wsgi.application'
 
-# Database
+# Database Configuration (SQLite for development)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -56,6 +61,7 @@ DATABASES = {
     }
 }
 
+# Password validation (default validators)
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -71,20 +77,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Localization
+# Localization settings
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
+# Static files settings
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",               
-    BASE_DIR / 'quizapp/static',       
+    BASE_DIR / 'static',  # For your custom static files
+    BASE_DIR / 'quizapp/static',  # Static files inside your app
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # For production use, where static files will be collected
 
-# Default primary key type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login and logout redirects
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
