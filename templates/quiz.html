@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .login,.logout,.register{
+    border: 2px solid blue;
+    background-color: #8938d5;
+    color: white;
+    font-weight: 700;
+    padding: 4px;
+    margin-left: 4px;
+    TEXT-decoration:NONE;
+    margin-top:4px;
+}
+  body {
+    font-family: Arial;
+    background-color: #f5f6ff;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  .question {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  .options {
+    margin-top: 10px;
+  }
+  .options label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+  }
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  .wrong {
+    color: red;
+  }
+  .score {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+</style>
+
+<h1 id="quizTitle">{{ lang }} - {{ topic }} Quiz</h1>
+
+<!-- Debug output (optional, remove later) -->
+<!-- <pre>{{ questions|safe }}</pre> -->
+
+<div id="quizContainer">
+  {% for question in questions %}
+    <div class="question">
+      <strong>Q{{ forloop.counter }}:</strong> {{ question.question }}
+      <div class="options">
+        {% for option in question.options %}
+          <label>
+            <input type="radio" name="q{{ forloop.parentloop.counter0 }}" value="{{ option }}" />
+            {{ option }}
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Display the score here -->
+<div class="score" id="scoreDisplay">Score: 0 / {{ questions|length }}</div>
+
+<div class="buttons">
+  <button onclick="submitQuiz()">Submit</button>
+  <button onclick="goBack()">Back</button>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  console.log("Script loaded ✅");
+
+  const correctAnswers = [
+    {% for question in questions %}
+      "{{ question.answer|escapejs }}"{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ];
+
+  function submitQuiz() {
+    let score = 0;
+
+    for (let i = 0; i < correctAnswers.length; i++) {
+      const options = document.querySelectorAll(`input[name="q${i}"]`);
+      options.forEach(option => {
+        const label = option.parentElement;
+
+        // Highlight correct answer
+        if (option.value === correctAnswers[i]) {
+          label.style.color = "green";
+          label.style.fontWeight = "bold";
+        }
+
+        // Highlight wrong answer (if selected)
+        if (option.checked && option.value !== correctAnswers[i]) {
+          label.style.color = "red";
+        }
+
+        // Disable all options after submission
+        option.disabled = true;
+      });
+
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected && selected.value === correctAnswers[i]) {
+        score++;
+      }
+    }
+
+    // Update the score display above the buttons
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    scoreDisplay.textContent = `Score: ${score} / ${correctAnswers.length}`;
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+</script>
+{% endblock %}

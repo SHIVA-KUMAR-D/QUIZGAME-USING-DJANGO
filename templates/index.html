@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Game</title>
+  <style>
+    .login,.logout,.register{
+      border: 2px solid blue;
+      background-color: #8938d5;
+      color: white;
+      font-weight: 700;
+      padding: 4px;
+      margin-left: 4px;
+      TEXT-decoration:NONE;
+      margin-top:4px;
+  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #6e99e2;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #8938d5;
+      width: 90%;
+      height: 60px;
+      margin: 20px auto;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      background-color: #ababeb;
+      width: 90%;
+      min-height: 70vh;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .lang-button {
+      background-color: #a26ecf;
+      border: none;
+      border-radius: 15px;
+      height: 150px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lang-button:hover {
+      transform: scale(1.05);
+      box-shadow: -6px 6px 12px rgba(62, 25, 98, 0.6);
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #8938d5;
+      width: 90%;
+      margin: 20px auto;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      .lang-button {
+        height: 100px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>Programming Quiz</nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="title">Select a Programming Language</div>
+      <div class="button-grid">
+        <a href="{% url 'topics' %}?lang=Python" class="lang-button">Python</a>
+        <a href="{% url 'topics' %}?lang=Java" class="lang-button">Java</a>
+        <a href="{% url 'topics' %}?lang=Cpp" class="lang-button">C++</a>
+        <a href="{% url 'topics' %}?lang=JavaScript" class="lang-button">JavaScript</a>
+        <a href="{% url 'topics' %}?lang=C" class="lang-button">C</a>
+        <a href="{% url 'topics' %}?lang=HTML_CSS" class="lang-button">HTML/CSS</a>
+        <a href="{% url 'topics' %}?lang=Ch" class="lang-button">C#</a>
+        <a href="{% url 'topics' %}?lang=Go" class="lang-button">Go</a>
+        <a href="{% url 'topics' %}?lang=Kotlin" class="lang-button">Kotlin</a>
+        <a href="{% url 'topics' %}?lang=Swift" class="lang-button">Swift</a>
+        <a href="{% url 'topics' %}?lang=Ruby" class="lang-button">Ruby</a>
+        <a href="{% url 'topics' %}?lang=PHP" class="lang-button">PHP</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>Created by Shiva, Srikanth, Pranay</footer>
+</body>
+</html>
+{% endblock %}

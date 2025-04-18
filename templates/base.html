@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Quiz Game{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} | 
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button class="logout" type="submit" >
+          Logout
+        </button>
+      </form>
+    </p>
+  {% else %}
+    <p>
+      <a class="login" href="{% url 'login' %}">Login</a> | 
+      <a class="register"   href="{% url 'register' %}">Register</a>
+    </p>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>
