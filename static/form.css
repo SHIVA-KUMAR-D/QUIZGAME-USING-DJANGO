@@ -1,0 +1,61 @@
+/* Center form on the page */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Headings */
+  .auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form fields */
+  .auth-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Buttons */
+  .auth-container .submit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .auth-container .submit:hover {
+    background-color: #45a049;
+  }
+  .login,.logout,.register{
+    border: 2px solid blue;
+    background-color: #8938d5;
+    color: white;
+    font-weight: 700;
+    padding: 4px;
+    margin-left: 4px;
+    TEXT-decoration:NONE;
+    margin-top:4px;
+}
+  /* Links */
+  .auth-container p {
+    text-align: center;
+  }
+  
+  .auth-container a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  

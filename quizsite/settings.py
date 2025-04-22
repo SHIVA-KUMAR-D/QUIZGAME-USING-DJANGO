@@ -1,6 +1,8 @@
+import dj_database_url
+import os
 from pathlib import Path
 import os
-SECRET_KEY = os.getenv('DJANGO_SEC+6#28!t_o3+dxk9&zth7xl=luopk9uk7yum8yujg-whxlr_ype')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # Ensure SECRET_KEY is set (development fallback key)
@@ -11,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['shiva-quiz-game.com']  # Update with your Render app URL
+ALLOWED_HOSTS =os.environ.get("ALLOWED_HOST").split(" ")  # Update with your Render app URL
 
 INSTALLED_APPS = [
     'quizapp.apps.QuizappConfig',
@@ -60,6 +62,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation (default validators)
 AUTH_PASSWORD_VALIDATORS = [
@@ -171,6 +174,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
