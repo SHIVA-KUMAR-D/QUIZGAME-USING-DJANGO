@@ -116,11 +116,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Allowed hosts
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'shiva-quiz-game.onrender.com',  # Change to your actual Render subdomain
-]
+ALLOWED_HOSTS = ['quizgame-using-django-s.onrender.com', 'localhost', '127.0.0.1']
+
 
 # Installed apps
 INSTALLED_APPS = [
